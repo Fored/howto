@@ -1,0 +1,61 @@
+#install fedora KDE
+#Обязательно на английском
+#для полной установки нужно 150гигов
+
+sudo dnf remove kpat -y
+sudo dnf remove kmahjongg -y
+sudo dnf remove kmail -y
+sudo dnf remove firefox -y
+sudo dnf remove akregator -y
+sudo dnf remove konversation -y
+sudo dnf remove kdeconnectd -y
+sudo dnf remove dosbox -y
+sudo dnf remove kmines -y
+sudo dnf remove kgpg -y
+
+sudo dnf update -y
+reboot
+sudo fwupdmgr update
+reboot
+
+sudo dnf install langpacks-ru -y
+sudo dnf install mc -y
+sudo dnf install gparted -y
+sudo dnf install git-gui -y
+sudo dnf install meld -y
+sudo dnf install kate -y
+sudo dnf install fedora-workstation-repositories -y
+sudo dnf config-manager --set-enabled google-chrome
+sudo dnf install google-chrome-stable -y
+sudo dnf copr enable vondruch/doublecmd -y
+sudo dnf install doublecmd-gtk -y
+
+sudo yum install lm_sensors -y
+sudo sensors-detect
+
+####телеграм
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install telegram -y
+
+#git config
+git config --global user.name "Dmitriy Afanasev"
+git config --global user.email dmitr-afanas@yandex.ru
+git config --global core.autocrlf false
+git config --global --add safe.directory '*'
+git config --global protocol.file.allow always
+
+
+####code
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+
+cat <<EOF | sudo tee /etc/yum.repos.d/vscode.repo
+[code]
+name=Visual Studio Code
+baseurl=https://packages.microsoft.com/yumrepos/vscode
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+EOF
+
+sudo dnf check-update
+sudo dnf install code -y
