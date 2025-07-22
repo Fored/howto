@@ -18,5 +18,5 @@ fi
 while read file; do
     new_name=$(basename $file .$EXTENSION)
 #     echo $new_name
-    ffmpeg -y -i $file -c:v libx265 -preset slow -crf 25 ./compressed/$new_name.mp4
+    ffmpeg -y -i $file -c:v libx265 -preset slow -map_metadata 0 -crf 25 ./compressed/$new_name.mp4
 done <<< $files
