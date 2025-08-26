@@ -16,31 +16,14 @@ process_file() {
     echo "Processing: $file"
     echo "Detected codec: $codec"
 
-    if [[ "$codec" == "h264" ]]; then
-        # Сжатие H.264
-        ffmpeg -y -i "$file" \
-            -c:v libx265 -preset slow -crf 28 \
-            -tag:v hvc1 -pix_fmt yuv420p10le \
-            -c:a copy \
-            -map 0 \
-            -map_metadata 0 \
-            -movflags use_metadata_tags \
-            "$OUTDIR/$base_name.mov"
-
-    elif [[ "$codec" == "hevc" ]]; then
-        # Сжатие H.265 (без Dolby Vision)
-        ffmpeg -y -i "$file" \
-            -c:v libx265 -preset slow -crf 28 \
-            -tag:v hvc1 -pix_fmt yuv420p10le \
-            -c:a copy \
-            -map 0 \
-            -map_metadata 0 \
-            -movflags use_metadata_tags \
-            "$OUTDIR/$base_name.$ext"
-
-    else
-        echo "⚠ Пропущено: неизвестный кодек $codec"
-    fi
+    ffmpeg -y -i "$file" \
+        -c:v libx265 -preset slow -crf 28 \
+        -tag:v hvc1 -pix_fmt yuv420p10le \
+        -c:a copy \
+        -map 0 \
+        -map_metadata 0 \
+        -movflags use_metadata_tags \
+        "$OUTDIR/${base_name}_compressed.mov"
 }
 
 # Считывание списка файлов
