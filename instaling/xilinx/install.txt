@@ -1,0 +1,43 @@
+sudo mkdir /opt/Xilinx
+sudo chown $USER:$USER /opt/Xilinx
+sudo dnf install ncurses-compat-libs -y
+sudo mkdir /mnt/iso
+
+sudo mount -o loop ./Xilinx_Unified_2022_2_1014_8888.iso /mnt/iso
+/mnt/iso/xsetup
+    # vivado->enterprise
+    # выбрать:
+        # Vivado Design Suite
+        # DocNav
+        # Virtex-7
+        # Acquire or Manage a License Key
+    # -load lic
+sudo umount /mnt/iso
+
+sudo mount -o loop ./Xilinx_Vivado_Vitis_Update_2022_2_2_0221_2201.iso /mnt/iso
+/mnt/iso/xsetup
+sudo umount /mnt/iso
+
+echo "set_param general.maxThreads 16" > /opt/Xilinx/Vivado/2024.2/scripts/Vivado_init.tcl
+
+cd /opt/Xilinx/Vivado/2024.2/data/xicom/cable_drivers/lin64/install_script/install_drivers
+sudo ./install_drivers
+
+sudo dnf install libxcrypt-compat
+
+#в настройках меню Линукса Виваде поставить запуск в терминале. это чтобы запускался моделсим.
+
+#удали HLS папку
+sudo rm -r /opt/Xilinx/Vitis_HLS
+
+Чтобы запускался VsCode нужно переименовать (.old) файлы
+mv /opt/Xilinx/Vivado/2022.2/lib/lnx64.o/Default/libstdc++.so.6 /opt/Xilinx/Vivado/2022.2/lib/lnx64.o/Default/libstdc++.so.6.old
+mv /opt/Xilinx/Vivado/2022.2/lib/lnx64.o/libstdc++.so.6 /opt/Xilinx/Vivado/2022.2/lib/lnx64.o/libstdc++.so.6.old
+mv /opt/Xilinx/Vivado/2022.2/lib/lnx64.o/libgmp.so.10 /opt/Xilinx/Vivado/2022.2/lib/lnx64.o/libgmp.so.10.old
+
+Решение проблем:
+https://wiki.archlinux.org/title/Xilinx_Vivado
+
+для удаления
+cd <INSTALL_ROOT>/.xinstall/<VIVADO_VERSION>
+sudo ./xsetup -b Uninstall
