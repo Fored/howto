@@ -9,3 +9,6 @@
         }
       ]
   }
+  "verilog.linting.linter": "verilator",
+  "verilog.linting.verilator.arguments": "-I<Path to Vivado>/data/verilog/src/xeclib -F ./.verilator_args",
+  "verilog.ctags.path": "/usr/bin/ctags"
