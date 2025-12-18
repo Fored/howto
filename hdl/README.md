@@ -44,9 +44,12 @@ Add to .vscode/settings.json
 
 ### System Verilog
 
+Code style is based on [lowRISC style-guides](https://github.com/lowRISC/style-guides/blob/master/VerilogCodingStyle.md)
+
+#### Для линтинга
+
 Используй плагин для VSCode:
 
-* [Verible](https://marketplace.visualstudio.com/items?itemName=CHIPSAlliance.verible)
 * [VerilogHDL](https://marketplace.visualstudio.com/items?itemName=mshr-h.VerilogHDL)
 
 Внутри плагина VerilogHDL используется [Verilator](https://verilator.org/guide/latest/install.html#package-manager-quick-install)
@@ -63,3 +66,10 @@ Add to .vscode/settings.json
   "verilog.linting.verilator.arguments": "-I<Path to Vivado>/data/verilog/src/xeclib -F ./.verilator_args",
   "verilog.ctags.path": "/usr/bin/ctags"
 ```
+
+#### Для форматирования
+
+Для форматирования через pre-commit потребуется поставить [Verible](https://github.com/chipsalliance/verible)
+
+* Download [Verible](https://github.com/chipsalliance/verible/releases)
+* Unpack and add to PATH
