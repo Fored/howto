@@ -1,30 +1,18 @@
-# Библиотека общего кода
 
-## Linting
+## Linting, code style
+
+Для форматирования кода в соответствии с соглашением о коде [pre-commit](https://pre-commit.com/) используется пакет:
+
+```shell
+pip install pre-commit
+pre-commit install
+```
 
 ### VHDL
+
 Используй плагин для VSCode:
 
 * [VHDL LS](https://marketplace.visualstudio.com/items?itemName=hbohlin.vhdl-ls)
-
-### System Verilog
-
-Использовать [Verilator](https://verilator.org/guide/latest/install.html#package-manager-quick-install)
-
-  ```shell
-    sudo apt-get install verilator   # On Ubuntu
-    sudo dnf install verilator verilator-devel # On Fedora
-  ```
-
-Add to .vscode/settings.json
-
-```text
-  "verilog.linting.linter": "verilator",
-  "verilog.linting.verilator.arguments": "-I<Path to Vivado>/data/verilog/src/xeclib -F ./.verilator_args",
-  "verilog.ctags.path": "/usr/bin/ctags"
-```
-
-## Repository code style
 
 Весь код, который коммитится в репозитории, должен быть пропущен через автоформатер:
 
@@ -54,3 +42,24 @@ Add to .vscode/settings.json
   }
 ```
 
+### System Verilog
+
+Используй плагин для VSCode:
+
+* [Verible](https://marketplace.visualstudio.com/items?itemName=CHIPSAlliance.verible)
+* [VerilogHDL](https://marketplace.visualstudio.com/items?itemName=mshr-h.VerilogHDL)
+
+Внутри плагина VerilogHDL используется [Verilator](https://verilator.org/guide/latest/install.html#package-manager-quick-install)
+
+  ```shell
+    sudo apt-get install verilator   # On Ubuntu
+    sudo dnf install verilator verilator-devel # On Fedora
+  ```
+
+Add to .vscode/settings.json
+
+```text
+  "verilog.linting.linter": "verilator",
+  "verilog.linting.verilator.arguments": "-I<Path to Vivado>/data/verilog/src/xeclib -F ./.verilator_args",
+  "verilog.ctags.path": "/usr/bin/ctags"
+```
