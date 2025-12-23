@@ -51,6 +51,7 @@ Code style is based on [lowRISC style-guides](https://github.com/lowRISC/style-g
 Используй плагин для VSCode:
 
 * [VerilogHDL](https://marketplace.visualstudio.com/items?itemName=mshr-h.VerilogHDL)
+* [Verible](https://marketplace.visualstudio.com/items?itemName=CHIPSAlliance.verible)
 
 Внутри плагина VerilogHDL используется [Verilator](https://verilator.org/guide/latest/install.html#package-manager-quick-install)
 
@@ -65,6 +66,13 @@ Add to .vscode/settings.json
   "verilog.linting.linter": "verilator",
   "verilog.linting.verilator.arguments": "-I<Path to Vivado>/data/verilog/src/xeclib -F ./.verilator_args",
   "verilog.ctags.path": "/usr/bin/ctags"
+  "verible.arguments": [
+        "--rules=parameter-name-style=\"localparam_style:ALL_CAPS;parameter_style:ALL_CAPS\",line-length=\"length:120\"",
+        "--column_limit=120"
+    ],
+  "[systemverilog]": {
+      "editor.defaultFormatter": "chipsalliance.verible"
+  },
 ```
 
 #### Для форматирования
