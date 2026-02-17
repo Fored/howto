@@ -10,13 +10,13 @@ rule :
   port_012:
     disable: True
   port_017:
-    case: 'RelaxedPascalCase'
+    disable: True
   port_map_002:
     disable: True
   generic_007:
     case: 'upper'
   generic_009:
-    case: 'RelaxedPascalCase'
+    disable: True
   generic_map_002:
     case: 'upper'
   type_500:
