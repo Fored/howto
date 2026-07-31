@@ -3,7 +3,7 @@ sudo chown $USER:$USER /opt/Xilinx
 sudo dnf install ncurses-compat-libs -y
 sudo mkdir /mnt/iso
 
-sudo mount -o loop ./Xilinx_Unified_2022_2_1014_8888.iso /mnt/iso
+sudo mount -o loop ./Xilinx_Unified_2025_1_0530_0145.iso /mnt/iso
 /mnt/iso/xsetup
     # vivado->enterprise
     # выбрать:
@@ -14,13 +14,9 @@ sudo mount -o loop ./Xilinx_Unified_2022_2_1014_8888.iso /mnt/iso
     # -load lic
 sudo umount /mnt/iso
 
-sudo mount -o loop ./Xilinx_Vivado_Vitis_Update_2022_2_2_0221_2201.iso /mnt/iso
-/mnt/iso/xsetup
-sudo umount /mnt/iso
+echo "set_param general.maxThreads 16" > /opt/Xilinx/2025.1/Vivado/scripts/Vivado_init.tcl
 
-echo "set_param general.maxThreads 16" > /opt/Xilinx/Vivado/2024.2/scripts/Vivado_init.tcl
-
-cd /opt/Xilinx/Vivado/2024.2/data/xicom/cable_drivers/lin64/install_script/install_drivers
+cd /opt/Xilinx/2025.1/Vivado/data/xicom/cable_drivers/lin64/install_script/install_drivers
 sudo ./install_drivers
 
 sudo dnf install libxcrypt-compat

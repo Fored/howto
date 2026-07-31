@@ -2,17 +2,7 @@
 #Обязательно на английском
 #для полной установки нужно 150гигов
 
-sudo dnf remove kpat -y
-sudo dnf remove kmahjongg -y
-sudo dnf remove kmail -y
-sudo dnf remove firefox -y
-sudo dnf remove akregator -y
-sudo dnf remove konversation -y
-sudo dnf remove kdeconnectd -y
-sudo dnf remove dosbox -y
-sudo dnf remove kmines -y
-sudo dnf remove kgpg -y
-
+curl -sSL https://raw.githubusercontent.com/supertico/fedora-open264-geoblock-fix/main/fedora-cisco-403-mitigation.sh | sudo bash
 sudo dnf update -y
 reboot
 sudo fwupdmgr update
@@ -24,11 +14,16 @@ sudo dnf install gparted -y
 sudo dnf install git-gui -y
 sudo dnf install meld -y
 sudo dnf install kate -y
+sudo dnf install wireguard-tools -y
+sudo dnf install -y tigervnc sshpass
+sudo dnf install -y make
 sudo dnf install fedora-workstation-repositories -y
-sudo dnf config-manager --set-enabled google-chrome
+sudo dnf config-manager setopt google-chrome.enabled=1
 sudo dnf install google-chrome-stable -y
 sudo dnf copr enable vondruch/doublecmd -y
 sudo dnf install doublecmd-gtk -y
+dnf config-manager setopt google-chrome.enabled=1
+dnf install google-chrome-stable
 
 sudo yum install lm_sensors -y
 sudo sensors-detect
